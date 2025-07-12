@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>My Video Links</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --subtle: #888888;
+      --accent: #007aff;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .video-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      border-radius: 12px;
+      aspect-ratio: 16 / 9;
+      background-color: #ddd;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .video-title {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .image-grid {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .image-grid img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .video-title {
+        font-size: 1.125rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+     <h1>🎥 My Videos</h1>
+    <p>Minimal. Clean. Curated. Click below to view.</p>
+
+    <a class="button" href="https://www.icloud.com/iclouddrive/your-video-1-link" target="_blank">
+      Watch: Showreel 2025
+    </a>
+
+    <a class="button" href="https://www.icloud.com/iclouddrive/your-video-2-link" target="_blank">
+      Watch: Behind the Scenes
+    </a>
+
+    <a class="button" href="https://www.icloud.com/iclouddrive/your-video-3-link" target="_blank">
+      Watch: Director’s Cut
+    </a>
+
+    
+
+    <div class="video-list">
+      <div class="video-item">
+        <a href="https://www.youtube.com/watch?v=example1" target="_blank">
+          <div class="video-thumbnail" style="background-image: url('https://via.placeholder.com/640x360?text=Video+1');"></div>
+          <div class="video-title">Inspiration from Nature</div>
+        </a>
+      </div>
+      <div class="video-item">
+        <a href="https://www.youtube.com/watch?v=example2" target="_blank">
+          <div class="video-thumbnail" style="background-image: url('https://via.placeholder.com/640x360?text=Video+2');"></div>
+          <div class="video-title">Designing with Purpose</div>
+        </a>
+      </div>
+      <div class="video-item">
+        <a href="https://www.youtube.com/watch?v=example3" target="_blank">
+          <div class="video-thumbnail" style="background-image: url('https://via.placeholder.com/640x360?text=Video+3');"></div>
+          <div class="video-title">Simplicity is Power</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="image-grid">
+      <img src="https://via.placeholder.com/300x200?text=Image+1" alt="Gallery Image 1">
+      <img src="https://via.placeholder.com/300x200?text=Image+2" alt="Gallery Image 2">
+      <img src="https://via.placeholder.com/300x200?text=Image+3" alt="Gallery Image 3">
+      <img src="https://via.placeholder.com/300x200?text=Image+4" alt="Gallery Image 4">
+    </div>
+    <div class="footer">© 2025 Your Name. All rights reserved.</div>
+  </div>
+</body>
+</html>
