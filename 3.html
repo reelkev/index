@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Award-Winning Actor & Director Portfolio">
+  <title>Jane Doe - Actor & Director</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #f8f9fa;
+      line-height: 1.6;
+      background-color: #212529;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #1a1d21;
+    }
+
+    .navbar-brand, .nav-link {
+      color: #f8f9fa !important;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .nav-link:hover {
+      color: #ced4da !important;
+    }
+
+    .nav-link i {
+      margin-right: 5px;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #f8f9fa;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-content {
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 4rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hero .btn {
+      font-weight: 600;
+      background: #495057;
+      border-color: #495057;
+      color: #f8f9fa;
+    }
+
+    .hero .btn:hover {
+      background: #6c757d;
+      border-color: #6c757d;
+    }
+
+    /* Sections */
+    .section {
+      padding: 100px 0;
+      width: 100%;
+    }
+
+    .section h2 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: left;
+      display: inline-block;
+      border-bottom: 2px solid #495057;
+      padding-bottom: 10px;
+    }
+
+    .section h2 i {
+      margin-right: 10px;
+    }
+
+    /* Background Colors for Sections */
+    .about { background: #2c3034; }
+    .credits { background: #212529; }
+    .study { background: #2c3034; }
+    .projects { background: #212529; }
+    .video-section { background: #2c3034; }
+    .contact { background: #212529; }
+
+    /* About */
+    .about .container {
+      padding: 30px;
+    }
+
+    .about p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    /* Credits & Study */
+    .credits ul, .study ul {
+      list-style: none;
+      padding: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .credits ul li, .study ul li {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .credits ul li strong, .study ul li strong {
+      font-weight: 600;
+    }
+
+    /* Projects */
+    .project img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+      border: 2px solid #495057;
+    }
+
+    .project-text {
+      padding: 30px;
+    }
+
+    .project-text h3 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    /* Video */
+    .video-section iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      border-radius: 5px;
+      border: 2px solid #495057;
+    }
+
+    /* Contact */
+    .contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    .contact .form-control {
+      background: #343a40;
+      border-color: #495057;
+      color: #f8f9fa;
+    }
+
+    .contact .form-control::placeholder {
+      color: #ced4da;
+    }
+
+    .contact .btn {
+      background: #495057;
+      border-color: #495057;
+      color: #f8f9fa;
+    }
+
+    .contact .btn:hover {
+      background: #6c757d;
+      border-color: #6c757d;
+    }
+
+    .social-links {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      margin: 0 15px;
+      color: #f8f9fa;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      color: #ced4da;
+    }
+
+    /* Footer */
+    .footer {
+      background: #1a1d21;
+      padding: 20px 0;
+      text-align: center;
+      color: #ced4da;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .section h2 {
+        font-size: 2rem;
+        margin-left: 15px;
+      }
+
+      .project img {
+        height: 150px;
+      }
+
+      .about .container, .credits ul, .study ul, .project-text, .contact form {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="bi bi-camera-reels"></i> Jane Doe</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about"><i class="bi bi-person"></i> About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#credits"><i class="bi bi-star"></i> Credits</a></li>
+          <li class="nav-item"><a class="nav-link" href="#study"><i class="bi bi-book"></i> Study</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects"><i class="bi bi-film"></i> Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reel"><i class="bi bi-play-circle"></i> Reel</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact"><i class="bi bi-envelope"></i> Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="resume.pdf" target="_blank"><i class="bi bi-file-earmark-text"></i> Resume</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Jane Doe</h1>
+      <p>Award-Winning Actor & Director</p>
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section about">
+    <div class="container">
+      <h2><i class="bi bi-person"></i> About</h2>
+      <p>Jane Doe is an award-winning actor and director whose passion for storytelling brings characters to life with authenticity and depth. With a career spanning film, television, and theater, Jane has captivated audiences worldwide, earning accolades for her transformative performances and bold directorial vision. Trained at top institutions, she combines technical precision with emotional resonance, crafting narratives that inspire and provoke. Whether on stage or behind the camera, Jane is dedicated to creating meaningful, unforgettable art.</p>
+    </div>
+  </section>
+
+  <!-- Credits -->
+  <section id="credits" class="section credits">
+    <div class="container">
+      <h2><i class="bi bi-star"></i> Credits</h2>
+      <ul>
+        <li><strong>The Silent Echo</strong>, Lead Role, Horizon Theater, 2024</li>
+        <li><strong>City of Shadows</strong>, Supporting Role, HBO, 2023</li>
+        <li><strong>Whispers in Time</strong>, Director, Sundance Film Festival, 2022</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Study -->
+  <section id="study" class="section study">
+    <div class="container">
+      <h2><i class="bi bi-book"></i> Study</h2>
+      <ul>
+        <li><strong>MFA in Acting</strong>, Yale School of Drama, 2019</li>
+        <li><strong>Directing Intensive</strong>, Sundance Institute, 2020</li>
+        <li><strong>Stanislavski Workshop</strong>, Lee Strasberg Institute, 2018</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section projects">
+    <div class="container">
+      <h2><i class="bi bi-film"></i> Projects</h2>
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="The Silent Echo">
+        </div>
+        <div class="col-md-6 project-text">
+          <h3>The Silent Echo</h3>
+          <p>Role: Lead Actor, 2024. A haunting drama about a woman unraveling her family’s past. Jane’s portrayal of the tormented protagonist earned critical acclaim at the Toronto International Film Festival, showcasing her ability to convey raw emotion with subtlety.</p>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-md-6 order-md-2">
+          <img src="https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Whispers in Time">
+        </div>
+        <div class="col-md-6 project-text order-md-1">
+          <h3>Whispers in Time</h3>
+          <p>Role: Director, 2022. Jane’s directorial debut, a poetic short film exploring love across generations. Premiered at Sundance, it won Best Short Film for its innovative storytelling and cinematic beauty.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video -->
+  <section id="reel" class="section video-section">
+    <div class="container">
+      <h2><i class="bi bi-play-circle"></i> Demo Reel</h2>
+      <iframe src="https://player.vimeo.com/video/123456789" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <h2><i class="bi bi-envelope"></i> Contact</h2>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <div class="mb-3">
+          <input type="text" class="form-control" name="name" placeholder="Name" required>
+        </div>
+        <div class="mb-3">
+          <input type="email" class="form-control" name="email" placeholder="Email" required>
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" name="message" placeholder="Message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+      <div class="social-links mt-4">
+        <a href="https://imdb.com" target="_blank"><i class="bi bi-film"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="bi bi-twitter"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>website.com &copy; 2025</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
