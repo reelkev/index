@@ -1,52 +1,13 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Actor Kevin Priestley</title>
-  <!-- Load Playfair Display and Lora fonts from Google Fonts -->
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Global box-sizing and overflow fix */
+
     *, *::before, *::after {
       box-sizing: border-box;
     }
@@ -66,19 +27,6 @@
 
     p {
       margin-top: 50;
-    }
-
-
-
-    /* Link container */
-    .link-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      width: 100%;
-      max-width: 100%;
-      padding: 1rem;
     }
 
     /* Base link styles */
@@ -157,30 +105,30 @@
       transform: scale(1.01);
     }
 
-    /* Responsive adjustments */
-@media (max-width: 480px) {
-  a.link-1, a.link-2, a.link-3, a.link-4 {
-    font-size: 2rem;
-    padding: 0.4rem 1rem; /* Slightly smaller padding */
-  }
-}
+      /* Responsive adjustments */
+      @media (max-width: 480px) {
+    a.link-1, a.link-2, a.link-3, a.link-4 {
+      font-size: 2rem;
+      padding: 0.4rem 1rem; /* Slightly smaller padding */
+      }
+    }
 
-@media (max-width: 360px) {
-  a.link-1, a.link-2, a.link-3, a.link-4 {
-    font-size: 2rem;
-  }
-}
+      @media (max-width: 360px) {
+    a.link-1, a.link-2, a.link-3, a.link-4 {
+      font-size: 2rem;
+      }
+    }
 
-@media (min-width: 768px) {
-  .link-container {
-    flex-direction: row; /* Horizontal on desktop */
-    gap: 2rem;
-  }
-  a.link-1, a.link-2, a.link-3, a.link-4 {
-    font-size: 5rem;
-  }
-}
-
+      @media (min-width: 768px) {
+      .link-container {
+      flex-direction: row; /* Horizontal on desktop */
+      gap: 2rem;
+    }
+    
+    a.link-1, a.link-2, a.link-3, a.link-4 {
+      font-size: 5rem;
+      }
+    }
 
     /* Name container */
     .name {
@@ -367,8 +315,8 @@
       <h2><i class="bi bi-person"></i> BIOGRAPHY</h2>
       <ul>
         <li>Ethnicity: British Australian<br> 
-        Languages: English</br>
-        Accents: Australian, USA</br>
+        Languages: English<br>
+        Accents: Australian, USA<br>
         Skills: Bodybuilding, Boxing, Nurse, Photography</li>
           
           <li>Kevin Priestley was born & raised on the Island of Tasmania, Australia. He lives & works in Melbourne as an Actor & Nurse. Brought up in a small forest in the north east of the Island, his father hosted many gatherings of artists & creative people, during summer he was often visited & influenced by the Rainbow Family. As a child, he would regularly attend gatherings & festivals, where he would assist in the distribution & cooking of the Chapati Indian dish. He farmed sheep with his grandfather & learned basic land- management skills, including bush craft. At an early age he became interested in Photo/Videography & attended homeschool, followed by College & University as an adult.</li>
@@ -382,9 +330,7 @@
   <p><a href="http://www.starnow.com/kevinpriestley" class="link-2">Starnow Profile</a><br></p>
   <p><a href="https://app.castingnetworks.com/talent/public-profile/9fdf8818-b30d-11eb-9be1-211ffe9bbdc4" class="link-3">Casting Networks</a></p>
   <p><a href="http://instagram.com/reelkevin" class="link-4">Instagram</a><br></p>
-
   </div>
-
 
 </body>
 </html>
