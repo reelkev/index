@@ -64,6 +64,18 @@
       color: #2d2d2d;
     }
 
+    p {
+      margin-top: 50;
+    }
+
+    a {
+      color: #0000FF; /* Classic blue */
+      text-decoration: underline; /* Underline for old-school look */
+      font-family: 'Lora', Georgia, serif; /* Matches resume body text */
+      font-size: 4rem;
+      transition: color 0.2s ease; /* Subtle hover transition */
+    }
+
     /* Name container */
     .name {
       display: flex;
@@ -103,6 +115,15 @@
     .first-name:hover, .last-name:hover {
       transform: scaleX(1);
       color: #d4af37;
+    }
+
+    /* Video */
+    .video-section iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      border-radius: 5px;
+      border: 1px solid #495057;
     }
 
     /* Resume container */
@@ -232,6 +253,40 @@
       <li><strong>Melbourne Actors Lab</strong>, Stella Adler, Lee Strasburg, 2013-2020</li>
       <li><strong>NIDA</strong>, Acting Techniques, Short Course, 2019</li>
     </ul>
+
+    <p></p>
+ 
+  <section id="reel" class="section video-section">
+    <div class="container">
+      <iframe src="https://player.vimeo.com/video/835487071" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section id="credits" class="section credits">
+    <div class="container">
+      <h2><i class="bi bi-person"></i> BIOGRAPHY</h2>
+      <ul>
+        <li>Ethnicity: British Australian<br> 
+        Languages: English</br>
+        Accents: Australian, USA</br>
+        Skills: Bodybuilding, Boxing, Nurse, Photography</li>
+          
+          <li>Kevin Priestley was born & raised on the Island of Tasmania, Australia. He lives & works in Melbourne as an Actor & Nurse. Brought up in a small forest in the north east of the Island, his father hosted many gatherings of artists & creative people, during summer he was often visited & influenced by the Rainbow Family. As a child, he would regularly attend gatherings & festivals, where he would assist in the distribution & cooking of the Chapati Indian dish. He farmed sheep with his grandfather & learned basic land- management skills, including bush craft. At an early age he became interested in Photo/Videography & attended homeschool, followed by College & University as an adult.</li>
+      </ul>
+    </div>
+  </section>
+
+  <img src="http://kevinpriestley.com/images/kevin.jpg" width="100%">
+
+      <p>        
+        <a href="https://www.imdb.com/name/nm6674804/">IMDb</a><br>
+        <a href="https://app.castingnetworks.com/talent/public-profile/9fdf8818-b30d-11eb-9be1-211ffe9bbdc4" class="link">Casting Networks</a><br>
+        <a href="http://www.starnow.com/kevinpriestley" class="link">Starnow</a>
+      </p>
+
   </div>
+
+
+
 </body>
 </html>
