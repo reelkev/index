@@ -1,285 +1,390 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0;url=https://linktr.ee/reelkevin">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Actor Portfolio</title>
-  
-  <!-- Bootstrap CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actor Kevin Priestley</title>
+  <!-- Load Playfair Display and Lora fonts from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Variables */
-    :root {
-      --primary-light: #f5f0e6;
-      --primary-gold: #c8a165;
-      --primary-dark: #0c0805;
-      --font-heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      --font-body: 'Arial', sans-serif;
+    /* Global box-sizing and overflow fix */
+    *, *::before, *::after {
+      box-sizing: border-box;
     }
 
     body {
-      background-color: var(--primary-light);
-      color: var(--primary-dark);
-      font-family: var(--font-body);
       margin: 0;
-    }
-
-    a {
-      color: var(--primary-gold);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Hero Banner */
-    .hero-banner {
-      position: relative;
-      background:
-        url('https://actor-potfolio.weblium.site/res/66682d54768c599f1cf7c522/6684f55e65f8d1d5ae6ee85a') no-repeat 77.5% 47.57% / cover,
-        linear-gradient(135deg, var(--primary-light) 40%, var(--primary-gold) 100%);
-      color: var(--primary-light);
-      font-family: var(--font-heading);
-      padding-top: 5rem;
-      padding-bottom: 5rem;
-      min-height: 90vh;
+      padding: 0;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      overflow: hidden;
-    }
-    .hero-banner::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      /*background: rgba(12, 8, 5, 0.65);*/
-      z-index: 0;
-    }
-    .hero-banner > .container {
-      position: relative;
-      z-index: 1;
+      background: #f8f8f8; /* Soft off-white */
+      overflow-x: hidden; /* Prevent horizontal scrollbar */
+      font-family: 'Lora', Georgia, serif;
+      color: #2d2d2d;
     }
 
-    /* Hero Text */
-    .hero-text {
-      max-width: 600px;
+    p {
+      margin-top: 50;
     }
-    .hero-text h1 {
-      font-size: 3.5rem;
+
+
+
+    /* Link container */
+    .link-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      max-width: 100%;
+      padding: 1rem;
+    }
+
+    /* Base link styles */
+    a.link-1, a.link-2, a.link-3, a.link-4 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 3rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      display: inline-block;
+    }
+
+    /* Link 1: Button */
+    a.link-1 {
+      display: inline-block;
+      background-color: #d4af37;
+      color: #f8f8f8;
+      border: 2px solid #2d2d2d;
+      padding: 0.4rem 1.2rem;
+      border-radius: 4px;
+    }
+
+    a.link-1:hover {
+      background-color: #C1AF71;
+      color: white;
+      transform: scale(1.01);
+    }
+
+        /* Link 2: */
+    a.link-2 {
+      display: inline-block;
+      color: white;
+      background-color: seagreen;
+      border: 2px solid #2d2d2d;
+      padding: 0.4rem 1.2rem;
+      border-radius: 4px;
+    }
+
+    a.link-2:hover {
+      color: #f8f8f8;
+      background-color: #3C5D3E;
+      border-color: #1a3c5e;
+      transform: scale(1.01);
+    }
+
+    /* Link 3: */
+    a.link-3 {
+      color: white;
+      background-color: #2C9EDE;
+      border: 2px solid #2d2d2d;
+      padding: 0.4rem 1.2rem;
+      border-radius: 4px;
+    }
+
+    a.link-3:hover {
+      color: #f8f8f8;
+      background-color: #1a3c5e;
+      border-color: #1a3c5e;
+      transform: scale(1.01);
+    }
+
+    /* Link 4: */
+    a.link-4 {
+      color: white;
+      background-color: indianred;
+      border: 2px solid #2d2d2d;
+      padding: 0.4rem 1.2rem;
+      border-radius: 4px;
+    }
+
+    a.link-4:hover {
+      color: white;
+      background-color: #513739;
+      border-color: #1a3c5e;
+      transform: scale(1.01);
+    }
+
+    /* Responsive adjustments */
+@media (max-width: 480px) {
+  a.link-1, a.link-2, a.link-3, a.link-4 {
+    font-size: 2rem;
+    padding: 0.4rem 1rem; /* Slightly smaller padding */
+  }
+}
+
+@media (max-width: 360px) {
+  a.link-1, a.link-2, a.link-3, a.link-4 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .link-container {
+    flex-direction: row; /* Horizontal on desktop */
+    gap: 2rem;
+  }
+  a.link-1, a.link-2, a.link-3, a.link-4 {
+    font-size: 5rem;
+  }
+}
+
+
+    /* Name container */
+    .name {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      font-family: 'Playfair Display', Georgia, serif;
+      padding: 1rem;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .first-name {
+      display: block;
+      font-size: 7rem;
       font-weight: 900;
-      margin-bottom: 1rem;
-      line-height: 1.1;
+      letter-spacing: -0.02em;
+      transform: scaleX(0.98);
+      text-transform: uppercase;
+      line-height: 1;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, color 0.2s ease;
     }
-    .hero-text h3 {
-      font-weight: 400;
+
+    .last-name {
+      display: block;
+      font-size: 5rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      transform: scaleX(1.02);
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: #4a4a4a;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .first-name:hover, .last-name:hover {
+      transform: scaleX(1);
+      color: #d4af37;
+    }
+
+    /* Video */
+    .video-section iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      border-radius: 5px;
+      border: 1px solid #495057;
+    }
+
+    /* Resume container */
+    .resume {
+      width: 100%;
+      max-width: 100%;
+      padding: 1rem;
       margin-bottom: 2rem;
-      font-style: italic;
+    }
+
+    /* Section headings */
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2d2d2d;
+      margin: 1.5rem 0 0.5rem;
+      text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    .hero-contact {
+
+    /* Resume list */
+    .resume ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
       font-size: 1rem;
-      margin-top: 1.5rem;
-    }
-    .hero-contact a {
-      color: var(--primary-light);
-      margin-right: 1.5rem;
-      font-weight: 600;
-    }
-
-    /* Headshot image right aligned */
-    .hero-headshot {
-      max-width: 400px;
-      margin-left: auto;
-      border: 8px solid var(--primary-light);
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
-      border-radius: 12px;
-      object-fit: cover;
-      width: 100%;
-      height: auto;
-    }
-
-    /* Section styles */
-    section {
-      padding: 4rem 2rem;
-    }
-    section:nth-of-type(even) {
-
-background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)),
-  url('https://www.transparenttextures.com/patterns/diagmonds.png'), var(--primary-light);
-background-repeat: repeat;
-
-    }
-    section h2 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: var(--primary-dark);
-    }
-    section p {
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 1.1rem;
       line-height: 1.6;
-      color: var(--primary-dark);
     }
 
-    /* Quotes styling */
-    blockquote {
-      font-style: italic;
-      font-size: 1.3rem;
-      margin: 2rem auto;
-      max-width: 600px;
-      border-left: 5px solid var(--primary-gold);
-      padding-left: 1rem;
-      color: #4a4031;
+    .resume li {
+      margin-bottom: 0.5rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
-    /* Productions tab bar */
-    .production-tabs {
-      background-color: var(--primary-dark);
-      color: var(--primary-light);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .production-tabs span {
-      background: var(--primary-gold);
-      color: var(--primary-dark);
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: default;
-      user-select: none;
-      box-shadow: 0 0 5px rgba(200,161,101,0.7);
-      transition: background 0.3s ease;
-    }
-    .production-tabs span:hover {
-      background: #e6c77d;
+    .resume li strong {
+      font-weight: 700;
+      color: #2d2d2d;
     }
 
-    /* Image with text side-by-side */
-    .image-text-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .image-text-row .image {
-      flex: 1 1 300px;
-      max-width: 400px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.15);
-      object-fit: cover;
-      width: 100%;
-      height: auto;
-    }
-    .image-text-row .text {
-      flex: 1 1 320px;
-      font-size: 1.1rem;
-      line-height: 1.5;
-      color: var(--primary-dark);
-    }
-    @media (max-width: 768px) {
-      .image-text-row {
-        flex-direction: column;
+    /* Responsive Adjustments */
+    @media (max-width: 480px) {
+      .first-name {
+        font-size: 4.5rem;
       }
-      .image-text-row .image,
-      .image-text-row .text {
-        max-width: 100%;
+      .last-name {
+        font-size: 3.2rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .resume ul {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .first-name {
+        font-size: 3.5rem;
+      }
+      .last-name {
+        font-size: 2.5rem;
+      }
+      .section-title {
+        font-size: 1.2rem;
+      }
+      .resume ul {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .first-name {
+        font-size: 9rem;
+      }
+      .last-name {
+        font-size: 6.5rem;
+      }
+      .section-title {
+        font-size: 2.5rem;
+      }
+      .resume ul {
+        font-size: 1.2rem;
       }
     }
   </style>
 </head>
 <body>
+  <div class="name">
+    <span class="first-name">Kevin</span>
+    <span class="last-name">Priestley</span>
+  </div>
+  <div class="resume">
+    <h2 class="section-title">Film</h2>
+    <ul>
+      <li><strong>The Color of Darkness</strong>, Jack, GK Makwana, 2017</li>
+    </ul>
+    <h2 class="section-title">Short Films</h2>
+    <ul>
+      <li><strong>Mister Mister</strong>, Matt, JMC Academy, 2021</li>
+      <li><strong>Kitab ko Panama</strong>, Pariscano, Dir. Niru Tripathi, 2021</li>
+      <li><strong>The Greatest Detective</strong>, Walter Huberis, Dir. Jason Vu, 2020</li>
+      <li><strong>These Two Hands</strong>, Fred, Dir. Sean Dobra, 2020</li>
+      <li><strong>Endless Love</strong>, Dr. Michael, Dir. Sean Smith, 2019</li>
+      <li><strong>Crime Doesn’t Pay</strong>, Wheels, JMC Academy, 2019</li>
+      <li><strong>Chanteuses Of Woe</strong>, Technician, Dir. Adam el Horri, 2019</li>
+    </ul>
+    <h2 class="section-title">Television</h2>
+    <ul>
+      <li><strong>Shiseido UNO</strong>, Passport Officer, Tokyo, Japan, 2016</li>
+      <li><strong>Wentworth</strong>, Assistant Nurse, Dir. Kevin Carlin, 2014</li>
+      <li><strong>Peroni Commercial</strong>, Lead Patron, Carlton Brewhouse, 2014</li>
+    </ul>
+    <h2 class="section-title">Training</h2>
+    <ul>
+      <li><strong>Uta Hagen</strong>, Howard Fine, Week 14, 2021</li>
+      <li><strong>Self-Tapes</strong>, Howard Fine, Marilyn McIntyre, Screen Acting 1 & 2, 2021</li>
+      <li><strong>Vocal Production</strong>, Stephen Costan, 2019-2021</li>
+      <li><strong>Stella Adler School of Acting</strong>, LA, Short Course, 2020</li>
+      <li><strong>Melbourne Actors Lab</strong>, Stella Adler, Lee Strasburg, 2013-2020</li>
+      <li><strong>NIDA</strong>, Acting Techniques, Short Course, 2019</li>
+    </ul>
 
-  <!-- Hero Banner -->
-  <section class="hero-banner">
-    <div class="container d-flex flex-wrap align-items-center">
-      <div class="hero-text">
-        <h1>Alexandra James</h1>
-        <h3>Film & Theatre Actor | Storyteller | Creator</h3>
-        <p class="hero-contact">
-          <a href="mailto:alexandra.james@email.com">alexandra.james@email.com</a>
-          <a href="tel:+1234567890">+1 (234) 567-890</a>
-          <a href="https://www.linkedin.com/in/alexandra-james" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </p>
-        <a href="#contact" class="btn btn-outline-light btn-lg mt-3">Contact Me</a>
-      </div>
-      
+    <p></p>
+ 
+  <section id="reel" class="section video-section">
+    <div class="container">
+      <iframe src="https://player.vimeo.com/video/835487071" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      Alexandra James is an award-winning actor known for her powerful performances in both independent films and classic theatre. With a passion for storytelling, she brings authenticity and depth to every role she embodies.
-    </p>
-    <blockquote>
-      "Alexandra’s talent is magnetic — she captivates audiences with every word and gesture."
-      <br> — Theatre Review Magazine
-    </blockquote>
-  </section>
-
-  <!-- Image Left with Text Right -->
-  <section>
-    <div class="container image-text-row">
-      <img
-        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
-        alt="On stage performance"
-        class="image"
-      />
-      <div class="text">
-        <h3>Recent Performance</h3>
-        <p>
-          Alexandra recently starred in the critically acclaimed play <em>"Echoes of Silence"</em>, delivering a stirring portrayal that resonated deeply with audiences and critics alike.
-        </p>
-      </div>
+  <section id="credits" class="section credits">
+    <div class="container">
+      <h2><i class="bi bi-person"></i> BIOGRAPHY</h2>
+      <ul>
+        <li>Ethnicity: British Australian<br> 
+        Languages: English</br>
+        Accents: Australian, USA</br>
+        Skills: Bodybuilding, Boxing, Nurse, Photography</li>
+          
+          <li>Kevin Priestley was born & raised on the Island of Tasmania, Australia. He lives & works in Melbourne as an Actor & Nurse. Brought up in a small forest in the north east of the Island, his father hosted many gatherings of artists & creative people, during summer he was often visited & influenced by the Rainbow Family. As a child, he would regularly attend gatherings & festivals, where he would assist in the distribution & cooking of the Chapati Indian dish. He farmed sheep with his grandfather & learned basic land- management skills, including bush craft. At an early age he became interested in Photo/Videography & attended homeschool, followed by College & University as an adult.</li>
+      </ul>
     </div>
   </section>
 
-  <!-- Image Right with Text Left -->
-  <section>
-    <div class="container image-text-row flex-row-reverse">
-      <img
-        src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=400&q=80"
-        alt="Film set behind the scenes"
-        class="image"
-      />
-      <div class="text">
-        <h3>Film Projects</h3>
-        <p>
-          Alexandra is currently filming <em>"Shadows of the Past"</em>, a historical drama exploring complex human emotions and relationships during turbulent times.
-        </p>
-      </div>
-    </div>
-  </section>
+  <img src="images/kevin3.jpg" width="100%">
 
-  <!-- Production Company Tabs -->
-  <section>
-    <div class="production-tabs">
-      <span>Sunrise Productions</span>
-      <span>Moonlight Studios</span>
-      <span>Starlight Films</span>
-      <span>Echo Theatre Company</span>
-    </div>
-  </section>
+  <p><a href="https://www.imdb.com/name/nm6674804/" class="link-1">IMDb Profile</a><br></p>
+  <p><a href="http://www.starnow.com/kevinpriestley" class="link-2">Starnow Profile</a><br></p>
+  <p><a href="https://app.castingnetworks.com/talent/public-profile/9fdf8818-b30d-11eb-9be1-211ffe9bbdc4" class="link-3">Casting Networks</a></p>
+  <p><a href="http://instagram.com/reelkevin" class="link-4">Instagram</a><br></p>
 
-  <!-- Footer -->
-  <footer class="text-center py-4" style="background-color: var(--primary-dark); color: var(--primary-light);">
-    <small>&copy; 2025 Alexandra James. All rights reserved.</small>
-  </footer>
+  </div>
 
-  <!-- Bootstrap JS Bundle (Popper + JS) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
