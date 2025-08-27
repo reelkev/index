@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Actor Kevin Priestley</title>
+  <title>Actor - Kevin Priestley</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -28,10 +28,20 @@
     p {
       margin-top: 50;
     }
-    
+
     img {
       border: 2px solid #2d2d2d;
       border-radius: 4px;
+    }
+
+    a.link-rep {
+        cursor: pointer;
+        color: blue;
+        font-weight: 700;
+    }
+
+    a.link-rep:hover {
+        color: darkblue;
     }
 
     /* Base link styles */
@@ -182,7 +192,7 @@
       aspect-ratio: 16/9;
       border: none;
       border-radius: 5px;
-      background-color: #1a1a1a;
+      background-color: #1A1A1A;
       border: 1px solid #495057;
     }
 
@@ -203,6 +213,10 @@
       margin: 1.5rem 0 0.5rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+    }
+
+    .section-margin {
+      margin-bottom: 50px;
     }
 
     /* Resume list */
@@ -277,6 +291,11 @@
 
       .old-credits summary {
         cursor: pointer;
+        font-weight: 500;
+      }
+
+      .coming-soon {
+        color: #999999;     
       }
 
       .old-credits ul {
@@ -297,15 +316,17 @@
     <span class="last-name">Priestley</span>
   </div>
   <div class="resume">
-    <h2 class="section-title">Film</h2>
+    <h2 class="section-title">Feature Films</h2>
     <ul>
       <li>2017 <strong>The Color of Darkness</strong>, Jack, GK Makwana</li>
 
-      <em>coming soon...</em><br>
-      2026, Dirty Heist, Clutch, New Realm Pictures<br>
-      2026, Untitled, Detective, Dir. Sol Tjapalyi<br>
-      2027, Bells of Mercy, Skuld, New Realm Pictures
-      <p></p>
+      <em>coming soon...</em>
+      <li class="coming-soon">2027 Bells of Mercy, Skuld, New Realm Pictures</li>
+      <li class="coming-soon">2026 Dirty Heist, Clutch, New Realm Pictures</li>
+      <li class="coming-soon">2026 Untitled, Officer Brennan, Dir. Sol Tjapalyi</li>
+
+      <div class="section-margin"></div>
+
     </ul>
     <h2 class="section-title">Short Films</h2>
     <ul>
@@ -319,25 +340,27 @@
       <li>2020 <strong>The Greatest Detective</strong>, Walter Huberis, Dir. Jason Vu</li>
       <li>2020 <strong>These Two Hands</strong>, Fred, Dir. Sean Dobra</li>
 
-<div class="old-credits-container">
-  <details class="old-credits">
-    <summary>See more...</summary><p></p>
-    <ul>
-      <li>2019 <strong>Endless Love</strong>, Dr. Michael, Dir. Sean Smith</li>
-      <li>2019 <strong>Crime Doesn’t Pay</strong>, Wheels, JMC Academy</li>
-      <li>2019 <strong>Chanteuses Of Woe</strong>, Technician, Dir. Adam el Horri</li>
-      <li>2019 <strong>The Number</strong>, Policeman, RMIT</li>
-      <li>2017 <strong>Surprise Horror</strong>, Killer, RMIT</li>
-      <li>2015 <strong>Pedal</strong>, Paramedic, Dir. Gareth Calverley</li>
-      <li>2015 <strong>Zombie</strong>, RMIT, Nick Patrick Lee</li>
-      <li>2015 <strong>Hero of the Eternity Stone</strong>, Biker</li>
-      <li>2015 <strong>Make... Or Break</strong>, Club Photographer, Thomas Petrakos</li>
-      <li>2014 <strong>Boat People</strong>, Sketch, 5MA Productions</li>
+  <div class="old-credits-container">
+    <details class="old-credits">
+      <summary>See more</summary>
+      <ul>
+        <li>2019 <strong>Endless Love</strong>, Dr. Michael, Dir. Sean Smith</li>
+        <li>2019 <strong>Crime Doesn’t Pay</strong>, Wheels, JMC Academy</li>
+        <li>2019 <strong>Chanteuses Of Woe</strong>, Technician, Dir. Adam el Horri</li>
+        <li>2019 <strong>The Number</strong>, Policeman, RMIT</li>
+        <li>2017 <strong>Surprise Horror</strong>, Killer, RMIT</li>
+        <li>2015 <strong>Pedal</strong>, Paramedic, Dir. Gareth Calverley</li>
+        <li>2015 <strong>Zombie</strong>, RMIT, Nick Patrick Lee</li>
+        <li>2015 <strong>Hero of the Eternity Stone</strong>, Biker</li>
+        <li>2015 <strong>Make... Or Break</strong>, Club Photographer, Thomas Petrakos</li>
+        <li>2014 <strong>Boat People</strong>, Sketch, 5MA Productions</li>
+      </ul>
+    </details>
+  </div>
     </ul>
-  </details>
-</div>
 
-    </ul>
+  <div class="section-margin"></div>
+
     <h2 class="section-title">Television</h2>
     <ul>
       <li>2025 <strong>Movember</strong>, Lead, Dir. Hamish Macgregor</li>
@@ -347,6 +370,9 @@
       <li>2014 <strong>Wentworth</strong>, Assistant Nurse, Dir. Kevin Carlin</li>
       <li>2014 <strong>Peroni Commercial</strong>, Lead Patron, Carlton Brewhouse</li>
     </ul>
+
+    <div class="section-margin"></div>
+
     <h2 class="section-title">Training</h2>
     <ul>
       <li><strong>Uta Hagen</strong>, Howard Fine, Week 60, 2021</li>
@@ -357,7 +383,7 @@
       <li><strong>NIDA</strong>, Acting Techniques, Short Course, 2019</li>
     </ul>
 
-    <p></p>
+    <div class="section-margin"></div>
  
   <section id="reel" class="section video-section">
     <div class="container">
@@ -367,27 +393,44 @@
 
   <section id="credits" class="section credits">
     <div class="container">
+
+      <div class="section-margin"></div>
+
       <h2><i class="bi bi-person"></i> BIOGRAPHY</h2>
       <ul>
         <li>
         Ethnicity: <strong>British Australian</strong><br> 
         Languages: <strong>English</strong><br>
         Accents: <strong>Australian, USA</strong><br>
-        Skills: <strong>Bodybuilding, Boxing, Nurse, Photography</strong>
+        Skills: <strong>Bodybuilding, Boxing, Nurse, Australian Army</strong>
         </li>
           
-          <li>Kevin Priestley was born & raised on the Island of Tasmania, Australia. He lives & works in Melbourne as an Actor & Nurse. Brought up in a small forest in the north east of the Island, his father hosted many gatherings of artists & creative people, during summer he was often visited & influenced by the Rainbow Family. As a child, he would regularly attend gatherings & festivals, where he would assist in the distribution & cooking of the Chapati Indian dish. He farmed sheep with his grandfather & learned basic land- management skills, including bush craft. At an early age he became interested in Photo/Videography & attended homeschool, followed by College & University as an adult.</li>
+          <li>Kevin Priestley was born & raised on the Island of Tasmania, Australia. He lives & works in Melbourne as an Actor & Nurse. Brought up in a small forest in the north east of the Island, his father hosted many gatherings of artists & creative people, during summer he was often visited & influenced by the Rainbow Family. As a child, he would regularly attend gatherings & festivals, where he would assist in the distribution & cooking of the Chapati Indian dish. He farmed sheep with his grandfather & learned basic land management skills, including bush craft. At an early age he became interested in Photo/Videography & attended homeschool, followed by College & University as an adult.</li>
       </ul>
     </div>
   </section>
 
   <img src="images/Kevin-8526.jpg" width="100%">
 
+  <div class="section-margin"></div>
+
+  <ul>
+    <li>
+      Represented by <a class="link-rep" href="http://williamsmgt.com" target="_blank">Williams Management</a><br>
+      Gael Macdonald <a class="link-rep" href="mailto:gael@williamsmgt.com">gael@williamsmgt.com</a><br>
+      Victoria  |  +61 3 9008 5955
+    </li>
+  </ul>
+
+  <div class="section-margin"></div>
+
   <p><a href="https://www.imdb.com/name/nm6674804/" class="link-1">IMDb Profile</a><br></p>
   <p><a href="http://www.starnow.com/kevinpriestley" class="link-2">Starnow Profile</a><br></p>
   <p><a href="https://app.castingnetworks.com/talent/public-profile/9fdf8818-b30d-11eb-9be1-211ffe9bbdc4" class="link-3">Casting Networks</a></p>
   <p><a href="http://instagram.com/reelkevin" class="link-4">Instagram</a><br></p>
   </div>
+
+  <div class="section-margin"></div>
 
 </body>
 </html>
